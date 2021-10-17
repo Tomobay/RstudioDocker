@@ -1,0 +1,22 @@
+version: "3"
+services:
+    rstudio:
+        image: bayer/rstudio:latest
+        ports:
+          - "8787:8787"
+        build:
+          context: _rstudio
+          args:
+            - GITHUB_PAT=$GITHUB_PAT
+            - http_proxy=$http_proxy
+            - https_proxy=$https_proxy
+        environment:
+          - USERNAME=rstudio
+          - PASSWORD=rstudio
+          - DISABLE_AUTH=true
+          - SSH_AUTH_SOCK=/ssh-agent
+        volumes:
+          - .:/home/rstudio/projects
+          - ${SSH_AUTH_SOCK}:/ssh-agent
+        tty: true
+        stdin_open: true
