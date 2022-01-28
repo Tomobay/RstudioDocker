@@ -1,7 +1,7 @@
 version: "3"
 services:
     rstudio:
-        image: bayer/rstudio:latest
+        image: tomobay/rstudio:latest
         ports:
           - "8787:8787"
         build:
